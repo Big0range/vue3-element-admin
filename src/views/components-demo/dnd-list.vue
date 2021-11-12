@@ -1,6 +1,7 @@
 <template>
   <div class="components-container">
-    <aside>drag-list base on
+    <aside>
+      drag-list base on
       <a href="https://github.com/SortableJS/Vue.Draggable" target="_blank">Vue.Draggable</a>
     </aside>
     <div class="editor-container">
@@ -28,7 +29,7 @@ export default {
   methods: {
     getData() {
       this.listLoading = true
-      fetchList().then(response => {
+      fetchList().then((response) => {
         this.list1 = response.data.items.splice(0, 5)
         this.list2 = response.data.items
       })
@@ -36,4 +37,3 @@ export default {
   }
 }
 </script>
-
