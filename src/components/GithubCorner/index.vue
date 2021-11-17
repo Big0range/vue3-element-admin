@@ -1,6 +1,6 @@
 <template>
   <a
-    href="https://github.com/PanJiaChen/vue-element-admin"
+    href="https://gitee.com/li_mei_chao/vue3-element-admin"
     target="_blank"
     class="github-corner"
     aria-label="View source on Github"

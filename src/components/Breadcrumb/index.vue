@@ -16,8 +16,6 @@ import { defineComponent, ref, watch } from 'vue'
 
 import { useRoute, useRouter } from 'vue-router'
 
-import pathToRegexp from 'path-to-regexp'
-
 export default defineComponent({
   setup() {
     const route = useRoute()
@@ -26,17 +24,13 @@ export default defineComponent({
 
     const getBreadcrumb = () => {
       // only show routes with meta.title
-      console.log(route)
       let matched: any = route.matched.filter((item) => item.components && item.meta && item.meta.title)
-      console.log(route.matched.filter((item) => item.components && item.meta && item.meta.title))
 
       const first = matched[0]
-
       if (!isDashboard(first)) {
-        console.log('route.matched.filter((item) => item.components && item.meta && item.meta.title)')
+        // console.log('route.matched.filter((item) => item.components && item.meta && item.meta.title)')
         matched = [{ path: '/dashboard', meta: { title: '仪表盘' } }].concat(matched)
       }
-      console.log(matched.filter((item: any) => item.meta && item.meta.title && item.meta.breadcrumb !== false))
 
       levelList.value = matched.filter((item: any) => item.meta && item.meta.title && item.meta.breadcrumb !== false)
     }
@@ -49,21 +43,14 @@ export default defineComponent({
       return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
     }
 
-    const pathCompile = (path: string) => {
-      // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
-      debugger
-      const { params } = route
-      console.log(params)
-      var toPath = pathToRegexp.compile(path)
-      return toPath(params)
-    }
     const handleLink = (item: any) => {
       const { redirect, path } = item
       if (redirect) {
         router.push(redirect)
         return
       }
-      router.push(pathCompile(path))
+
+      router.push(path === '/dashboard' ? '/' : path)
     }
     watch(
       () => route.path,

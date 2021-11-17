@@ -103,6 +103,7 @@ export default defineComponent({
     let serviceRoutes: any[] = []
 
     const getRoutes = async () => {
+      console.log('getRoutes')
       const res = await getRoutesApi()
       serviceRoutes = res.data
       routes = generateRoutes(res.data)

@@ -1,18 +1,19 @@
 <template>
   <div v-if="errorLogs.length > 0">
-    <el-badge :is-dot="true" style="line-height: 25px; margin-top: -5px" @click.enter="dialogTableVisible = true">
+    <el-badge :is-dot="true" style="line-height: 25px; margin-top: -5px" @click="openDialog">
       <el-button style="padding: 8px 10px" size="small" type="danger">
         <svg-icon icon-class="bug" />
       </el-button>
     </el-badge>
 
-    <el-dialog v-model:visible="dialogTableVisible" width="80%" append-to-body>
-      <template v-slot:title>
+    <el-dialog v-model="dialogTableVisible" title="Tips" width="80%" append-to-body>
+      <template #title>
         <div>
-          <span style="padding-right: 10px">Error Log</span>
-          <el-button size="mini" type="primary" icon="el-icon-delete" @click="clearAll">Clear All</el-button>
+          <span style="padding-right: 10px">错误日志</span>
+          <el-button size="mini" type="primary" icon="el-icon-delete" @click="clearAll">清空</el-button>
         </div>
       </template>
+
       <el-table :data="errorLogs" border>
         <el-table-column label="Message">
           <template v-slot="{ row }">
@@ -25,7 +26,7 @@
             <br />
             <div>
               <span class="message-title" style="padding-right: 10px">Info: </span>
-              <el-tag type="warning"> {{ row.vm.$vnode.tag }} error in {{ row.info }} </el-tag>
+              <el-tag type="warning">{{ row.info }} </el-tag>
             </div>
             <br />
             <div>
@@ -38,7 +39,9 @@
         </el-table-column>
         <el-table-column label="Stack">
           <template v-slot="scope">
-            {{ scope.row.err.stack }}
+            <div style="overflow: scroll">
+              <pre>{{ scope.row.err.stack }}</pre>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -46,26 +49,35 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ErrorLog',
-  data() {
+<script lang="ts">
+import { defineComponent, ref, computed } from 'vue'
+import { useStore } from '@/store'
+import { useGetters } from '@/hooks'
+export default defineComponent({
+  setup() {
+    const store = useStore()
+    const dialogTableVisible = ref(false)
+    const { errorLogs } = useGetters(['errorLogs'])
+    const clearAll = () => {
+      store.dispatch('errorLog/clearErrorLog')
+      closeDialog()
+    }
+    const openDialog = () => {
+      console.log('open')
+      dialogTableVisible.value = true
+    }
+
+    const closeDialog = () => {
+      dialogTableVisible.value = true
+    }
     return {
-      dialogTableVisible: false
-    }
-  },
-  computed: {
-    errorLogs() {
-      return this.$store.getters.errorLogs
-    }
-  },
-  methods: {
-    clearAll() {
-      this.dialogTableVisible = false
-      this.$store.dispatch('errorLog/clearErrorLog')
+      dialogTableVisible,
+      errorLogs,
+      clearAll,
+      openDialog
     }
   }
-}
+})
 </script>
 
 <style scoped>

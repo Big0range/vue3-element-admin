@@ -8,34 +8,34 @@ const tableRouter = {
   redirect: '/table/complex-table',
   name: 'Table',
   meta: {
-    title: 'Table',
+    title: '表格',
     icon: 'table'
   },
   children: [
     {
       path: 'dynamic-table',
-      component: () => import('@/views/main/main.vue'),
+      component: () => import('@/views/table/dynamic-table/index.vue'),
       name: 'DynamicTable',
-      meta: { title: 'Dynamic Table' }
+      meta: { title: '动态表格' }
     },
-    {
-      path: 'drag-table',
-      component: () => import('@/views/main/main.vue'),
-      name: 'DragTable',
-      meta: { title: 'Drag Table' }
-    },
+    // {
+    //   path: 'drag-table',
+    //   component: () => import('@/views/main/main.vue'),
+    //   name: 'DragTable',
+    //   meta: { title: 'Drag Table' }
+    // },
     {
       path: 'inline-edit-table',
-      component: () => import('@/views/main/main.vue'),
+      component: () => import('@/views/table/inline-edit-table.vue'),
       name: 'InlineEditTable',
       meta: { title: 'Inline Edit' }
-    },
-    {
-      path: 'complex-table',
-      component: () => import('@/views/main/main.vue'),
-      name: 'ComplexTable',
-      meta: { title: 'Complex Table' }
     }
+    // {
+    //   path: 'complex-table',
+    //   component: () => import('@/views/main/main.vue'),
+    //   name: 'ComplexTable',
+    //   meta: { title: 'Complex Table' }
+    // }
   ]
 }
 export default tableRouter

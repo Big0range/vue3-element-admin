@@ -53,7 +53,6 @@ export const userState: Module<IUserState, IRootState> = {
 
     // get user info
     async getInfo({ commit, state }) {
-      console.log('getInfo')
       const result = await getInfo(state.token)
       const { data } = result
       // debugger

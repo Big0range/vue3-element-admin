@@ -4,6 +4,7 @@ import router from './router'
 import store from '@/store'
 import { directive } from '@/directive'
 import SvgIcon from '@/components/SvgIcon/index.vue' // svg component
+import errorLog from './utils/error-log'
 // 样式初始化
 import 'normalize.css'
 // 全局样式
@@ -27,4 +28,5 @@ const app = createApp(App)
 import ElIcons from '@/icons'
 app.component('svg-icon', SvgIcon)
 ElIcons(app)
+errorLog(app)
 app.use(store).use(router).use(ElementPlus).use(directive).mount('#app')

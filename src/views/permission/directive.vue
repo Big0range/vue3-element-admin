@@ -79,7 +79,7 @@ export default {
 
 <style lang="scss" scoped>
 .app-container {
-  ::v-deep .permission-alert {
+  :deep(.permission-alert) {
     width: 320px;
     margin-top: 15px;
     background-color: #f0f9eb;
@@ -88,10 +88,10 @@ export default {
     border-radius: 4px;
     display: inline-block;
   }
-  ::v-deep .permission-sourceCode {
+  :deep(.permission-sourceCode) {
     margin-left: 15px;
   }
-  ::v-deep .permission-tag {
+  :deep(.permission-tag) {
     background-color: #ecf5ff;
   }
 }

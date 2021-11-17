@@ -8,7 +8,12 @@
     <el-tabs type="border-card">
       <el-tab-pane label="Icons">
         <div class="grid">
-          <div v-for="item of svgIcons" :key="item" @click="handleClipboard(generateIconCode(item), $event)">
+          <div
+            v-for="item of svgIcons"
+            :key="item"
+            v-clipboard:copy="generateIconCode(item)"
+            v-clipboard:success="handleClipboard"
+          >
             <el-tooltip placement="top">
               <template #content>
                 <div>
@@ -25,7 +30,12 @@
       </el-tab-pane>
       <el-tab-pane label="Element-UI Icons">
         <div class="grid">
-          <div v-for="item of elementIcons" :key="item" @click="handleClipboard(generateElementIconCode(item), $event)">
+          <div
+            v-for="item of elementIcons"
+            :key="item"
+            v-clipboard:copy="generateElementIconCode(item)"
+            v-clipboard:success="handleClipboard"
+          >
             <el-tooltip placement="top">
               <template #content>
                 <div>
@@ -46,8 +56,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
+import { ElMessage } from 'element-plus'
 
-import clipboard from '@/utils/clipboard'
 import svgIcons from './svg-icons'
 import elementIcons from './element-icons'
 
@@ -60,8 +70,12 @@ export default defineComponent({
     const generateElementIconCode = (symbol: any) => {
       return `<i class="el-icon-${symbol}" />`
     }
-    const handleClipboard = (text: any, event: any) => {
-      clipboard(text, event)
+    const handleClipboard = () => {
+      ElMessage({
+        message: '复制成功',
+        type: 'success',
+        duration: 1500
+      })
     }
     const svgIcons2 = reactive(svgIcons)
     const elementIcons2 = reactive(elementIcons)

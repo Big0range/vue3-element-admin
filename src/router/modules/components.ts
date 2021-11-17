@@ -8,7 +8,7 @@ const componentsRouter = {
   redirect: 'noRedirect',
   name: 'ComponentDemo',
   meta: {
-    title: 'Components',
+    title: '组件示例',
     icon: 'component'
   },
   children: [
@@ -25,12 +25,6 @@ const componentsRouter = {
       meta: { title: 'Markdown' }
     },
     {
-      path: 'json-editor',
-      component: () => import('@/views/components-demo/json-editor.vue'),
-      name: 'JsonEditorDemo',
-      meta: { title: 'JSON Editor' }
-    },
-    {
       path: 'split-pane',
       component: () => import('@/views/components-demo/split-pane.vue'),
       name: 'SplitpaneDemo',
@@ -41,12 +35,6 @@ const componentsRouter = {
       component: () => import('@/views/components-demo/avatar-upload.vue'),
       name: 'AvatarUploadDemo',
       meta: { title: 'Upload' }
-    },
-    {
-      path: 'dropzone',
-      component: () => import('@/views/components-demo/dropzone.vue'),
-      name: 'DropzoneDemo',
-      meta: { title: 'Dropzone' }
     },
     {
       path: 'sticky',
@@ -65,36 +53,6 @@ const componentsRouter = {
       component: () => import('@/views/components-demo/mixin.vue'),
       name: 'ComponentMixinDemo',
       meta: { title: 'Component Mixin' }
-    },
-    {
-      path: 'back-to-top',
-      component: () => import('@/views/main/main.vue'),
-      name: 'BackToTopDemo',
-      meta: { title: 'Back To Top' }
-    },
-    {
-      path: 'drag-dialog',
-      component: () => import('@/views/main/main.vue'),
-      name: 'DragDialogDemo',
-      meta: { title: 'Drag Dialog' }
-    },
-    {
-      path: 'drag-select',
-      component: () => import('@/views/main/main.vue'),
-      name: 'DragSelectDemo',
-      meta: { title: 'Drag Select' }
-    },
-    {
-      path: 'dnd-list',
-      component: () => import('@/views/main/main.vue'),
-      name: 'DndListDemo',
-      meta: { title: 'Dnd List' }
-    },
-    {
-      path: 'drag-kanban',
-      component: () => import('@/views/main/main.vue'),
-      name: 'DragKanbanDemo',
-      meta: { title: 'Drag Kanban' }
     }
   ]
 }

@@ -46,6 +46,7 @@ export const permissionState: Module<IPermissionState, IRootState> = {
   },
   mutations: {
     SET_ROUTES: (state, routes) => {
+      // console.log(routes)
       state.addRoutes = routes
       state.routes = [...constantRoutes, ...routes]
     },

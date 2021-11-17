@@ -3,7 +3,7 @@ import type { IRootState } from '../../type'
 import type { ISettingsState } from './type'
 
 import variables from '@/styles/element-variables.scss'
-import defaultSettings from '@/settings'
+import defaultSettings from '@/utils/settings'
 const { showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings
 
 export const settingsState: Module<ISettingsState, IRootState> = {

@@ -1,16 +1,16 @@
 <template>
-  <div id="tags-view-container" class="tags-view-container">
+  <div id="tags-view-container" ref="el" class="tags-view-container">
     <scroll-pane ref="scrollPane" class="tags-view-wrapper" @scroll="handleScroll">
       <router-link
         v-for="tag in visitedViews"
-        ref="tag"
+        ref="tags"
         :key="tag.path"
         :class="isActive(tag) ? 'active' : ''"
         :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
         tag="span"
         class="tags-view-item"
         @click.middle.enter="!isAffix(tag) ? closeSelectedTag(tag) : ''"
-        @contextmenu.prevent.enter="openMenu(tag, $event)"
+        @contextmenu.prevent="openMenu(tag, $event)"
       >
         {{ tag.title }}
         <span v-if="!isAffix(tag)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
@@ -99,7 +99,23 @@ export default defineComponent({
       }
       return false
     }
-    const moveToCurrentTag = () => {}
+    const moveToCurrentTag = () => {
+      // nextTick(() => {
+      //   if (!tags.value) return
+      //   console.log(tags)
+      //   for (const tag of tags.value) {
+      //     console.log('tag', tag)
+      //     // if (tag.to.path === this.$route.path) {
+      //     //   this.$refs.scrollPane.moveToTarget(tag)
+      //     //   // when query is different then update
+      //     //   if (tag.to.fullPath !== this.$route.fullPath) {
+      //     //     this.$store.dispatch('tagsView/updateVisitedView', this.$route)
+      //     //   }
+      //     //   break
+      //     // }
+      //   }
+      // })
+    }
 
     const refreshSelectedTag = (view: any) => {
       store.dispatch('tagsView/delCachedView', view).then(() => {
@@ -149,15 +165,15 @@ export default defineComponent({
         }
       }
     }
-    const $el = ref<HTMLElement>()
+    const el = ref<HTMLElement>()
     const openMenu = (tag: any, e: any) => {
       const menuMinWidth = 105
-      const offsetLeft = $el.value?.getBoundingClientRect().left // container margin left
-      const offsetWidth = $el.value?.offsetWidth // container
+      const offsetLeft = el.value?.getBoundingClientRect().left // container margin left
+      const offsetWidth = el.value?.offsetWidth // container
+
       if (offsetWidth === undefined || offsetLeft === undefined) return
       const maxLeft = offsetWidth - menuMinWidth // left boundary
       const left = e.clientX - offsetLeft + 15 // 15: margin right
-
       if (left > maxLeft) {
         refs.left.value = maxLeft
       } else {
@@ -182,16 +198,32 @@ export default defineComponent({
         moveToCurrentTag()
       }
     )
+    watch(
+      () => refs.visible.value,
+      (newV) => {
+        if (newV) {
+          document.body.addEventListener('click', closeMenu)
+        } else {
+          document.body.removeEventListener('click', closeMenu)
+        }
+      }
+    )
     onMounted(() => {
       initTags()
       addTags()
     })
+
+    const tags = ref()
+    const scrollPane = ref<HTMLElement>()
     return {
       ...refs,
       selectedTag,
       affixTags,
       visitedViews,
       routes,
+      el,
+      tags,
+      scrollPane,
       isActive,
       isAffix,
       closeSelectedTag,

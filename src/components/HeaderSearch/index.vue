@@ -12,7 +12,13 @@
       class="header-search-select"
       @change="change"
     >
-      <el-option v-for="item in options" :key="item.path" :value="item" :label="item.title.join(' > ')" />
+      <el-option
+        v-for="item in options"
+        :key="item.item.path"
+        :value="item.item"
+        :label="item.item.title.join(' > ')"
+        class="header-search-select-item"
+      />
     </el-select>
   </div>
 </template>
@@ -31,7 +37,8 @@ export default {
       options: [],
       searchPool: [],
       show: false,
-      fuse: undefined
+      fuse: undefined,
+      docs: []
     }
   },
   computed: {
@@ -96,6 +103,7 @@ export default {
           }
         ]
       })
+      this.docs = this.fuse._docs
     },
     // Filter out the routes that can be displayed in the sidebar
     // And generate the internationalized title
@@ -145,6 +153,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header-search-select-item {
+  color: #606266 !important;
+  font-weight: initial !important;
+}
 .header-search {
   font-size: 0 !important;
 
@@ -163,8 +175,7 @@ export default {
     border-radius: 0;
     display: inline-block;
     vertical-align: middle;
-
-    :deepp .el-input__inner {
+    :deep(.el-input__inner) {
       border-radius: 0;
       border: 0;
       padding-left: 0;

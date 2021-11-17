@@ -11,13 +11,13 @@ const users = {
   'admin-token': {
     roles: ['admin'],
     introduction: 'I am a super administrator',
-    avatar: 'https://s3.bmp.ovh/imgs/2021/11/098a3592a679895c.gif',
+    avatar: 'https://p1-ppx.byteimg.com/obj/tos-cn-i-8gu37r9deh/4f4f697480c04d26bd7698139c4a8cf3',
     name: 'Super Admin'
   },
   'editor-token': {
     roles: ['editor'],
     introduction: 'I am an editor',
-    avatar: 'https://s3.bmp.ovh/imgs/2021/11/098a3592a679895c.gif',
+    avatar: 'https://p1-ppx.byteimg.com/obj/tos-cn-i-8gu37r9deh/4f4f697480c04d26bd7698139c4a8cf3',
     name: 'Normal Editor'
   }
 }

@@ -11,7 +11,6 @@
 import {
   defineComponent,
   ref,
-  reactive,
   computed,
   watch,
   nextTick,
@@ -122,7 +121,6 @@ export default defineComponent({
         link_title: false,
         nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
         init_instance_callback: (editor: any) => {
-          console.log(props.value)
           if (props.value) {
             editor.setContent(props.value)
           }
@@ -231,10 +229,8 @@ export default defineComponent({
 }
 
 .tinymce-container {
-  ::v-deep {
-    .mce-fullscreen {
-      z-index: 10000;
-    }
+  :deep(.mce-fullscreen) {
+    z-index: 10000;
   }
 }
 

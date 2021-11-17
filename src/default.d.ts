@@ -41,6 +41,7 @@ declare module 'screenfull' {
 
 interface Window {
   tinymce?: any
+  el: any
 }
 
 interface GlobalEventHandlers {
@@ -49,6 +50,6 @@ interface GlobalEventHandlers {
 }
 
 declare module 'path-to-regexp' {
-  const pathToRegexp: { compile: (path: string) => any }
+  const pathToRegexp: { compile: (path: any) => any }
   export default pathToRegexp
 }

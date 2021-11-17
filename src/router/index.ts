@@ -33,44 +33,24 @@ export const constantRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/404',
-    component: () => import('@/views/main/main.vue'),
+    component: () => import('@/views/error-page/404.vue'),
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/main/main.vue'),
+    component: () => import('@/views/error-page/401.vue'),
     hidden: true
   },
   {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    meta: { title: '仪表盘', icon: 'dashboard', affix: true },
     children: [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard/index.vue'),
         name: 'Dashboard',
         meta: { title: '仪表盘', icon: 'dashboard', affix: true }
-      }
-      // {
-      //   path: 'qwe',
-      //   component: () => import('@/views/main2/main2.vue'),
-      //   name: 'qwe',
-      //   meta: { title: 'qwe', icon: 'dashboard', affix: false }
-      // }
-    ]
-  },
-  {
-    path: '/login2',
-    component: Layout,
-    meta: { title: 'login2', icon: 'dashboard', affix: false },
-    children: [
-      {
-        path: 'zzz',
-        component: () => import('@/views/login/login.vue'),
-        name: 'Login2',
-        meta: { title: 'Login2', icon: 'dashboard', affix: false }
       }
     ]
   },
@@ -87,19 +67,6 @@ export const constantRoutes: RouteRecordRaw[] = [
       }
     ]
   },
-  // {
-  //   path: '/guide',
-  //   component: Layout,
-  //   redirect: '/guide/index',
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/main/main.vue'),
-  //       name: 'Guide',
-  //       meta: { title: 'Guide', icon: 'guide', noCache: true }
-  //     }
-  //   ]
-  // },
   {
     path: '/profile',
     component: Layout,
@@ -180,52 +147,52 @@ export const asyncRoutes: RouteRecordRaw[] = [
   componentsRouter,
   // chartsRouter,
   nestedRouter,
-  // tableRouter,
+  tableRouter,
 
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/list',
-    name: 'Example',
-    meta: {
-      title: 'Example',
-      icon: 'el-icon-s-help'
-    },
-    children: [
-      {
-        path: 'create',
-        component: () => import('@/views/main/main.vue'),
-        name: 'CreateArticle',
-        meta: { title: 'Create Article', icon: 'edit' }
-      },
-      {
-        path: 'edit/:id(\\d+)',
-        component: () => import('@/views/main/main.vue'),
-        name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
-        hidden: true
-      },
-      {
-        path: 'list',
-        component: () => import('@/views/main/main.vue'),
-        name: 'ArticleList',
-        meta: { title: 'Article List', icon: 'list' }
-      }
-    ]
-  },
+  // {
+  //   path: '/example',
+  //   component: Layout,
+  //   redirect: '/example/list',
+  //   name: 'Example',
+  //   meta: {
+  //     title: 'Example',
+  //     icon: 'el-icon-s-help'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'create',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'CreateArticle',
+  //       meta: { title: 'Create Article', icon: 'edit' }
+  //     },
+  //     {
+  //       path: 'edit/:id(\\d+)',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'EditArticle',
+  //       meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+  //       hidden: true
+  //     },
+  //     {
+  //       path: 'list',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'ArticleList',
+  //       meta: { title: 'Article List', icon: 'list' }
+  //     }
+  //   ]
+  // },
 
-  {
-    path: '/tab',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/main/main.vue'),
-        name: 'Tab',
-        meta: { title: 'Tab', icon: 'tab' }
-      }
-    ]
-  },
+  // {
+  //   path: '/tab',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'Tab',
+  //       meta: { title: 'Tab', icon: 'tab' }
+  //     }
+  //   ]
+  // },
 
   {
     path: '/error',
@@ -258,108 +225,109 @@ export const asyncRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: 'log',
-        component: () => import('@/views/main/main.vue'),
+        component: () => import('@/views/error-log/index.vue'),
         name: 'ErrorLog',
         meta: { title: 'Error Log', icon: 'bug' }
       }
     ]
   },
 
-  {
-    path: '/excel',
-    component: Layout,
-    redirect: '/excel/export-excel',
-    name: 'Excel',
-    meta: {
-      title: 'Excel',
-      icon: 'excel'
-    },
-    children: [
-      {
-        path: 'export-excel',
-        component: () => import('@/views/main/main.vue'),
-        name: 'ExportExcel',
-        meta: { title: 'Export Excel' }
-      },
-      {
-        path: 'export-selected-excel',
-        component: () => import('@/views/main/main.vue'),
-        name: 'SelectExcel',
-        meta: { title: 'Export Selected' }
-      },
-      {
-        path: 'export-merge-header',
-        component: () => import('@/views/main/main.vue'),
-        name: 'MergeHeader',
-        meta: { title: 'Merge Header' }
-      },
-      {
-        path: 'upload-excel',
-        component: () => import('@/views/main/main.vue'),
-        name: 'UploadExcel',
-        meta: { title: 'Upload Excel' }
-      }
-    ]
-  },
+  // {
+  //   path: '/excel',
+  //   component: Layout,
+  //   redirect: '/excel/export-excel',
+  //   name: 'Excel',
+  //   meta: {
+  //     title: 'Excel',
+  //     icon: 'excel'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'export-excel',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'ExportExcel',
+  //       meta: { title: 'Export Excel' }
+  //     },
+  //     {
+  //       path: 'export-selected-excel',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'SelectExcel',
+  //       meta: { title: 'Export Selected' }
+  //     },
+  //     {
+  //       path: 'export-merge-header',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'MergeHeader',
+  //       meta: { title: 'Merge Header' }
+  //     },
+  //     {
+  //       path: 'upload-excel',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'UploadExcel',
+  //       meta: { title: 'Upload Excel' }
+  //     }
+  //   ]
+  // },
+
+  // {
+  //   path: '/zip',
+  //   component: Layout,
+  //   redirect: '/zip/download',
+  //   alwaysShow: true,
+  //   name: 'Zip',
+  //   meta: { title: 'Zip', icon: 'zip' },
+  //   children: [
+  //     {
+  //       path: 'download',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'ExportZip',
+  //       meta: { title: 'Export Zip' }
+  //     }
+  //   ]
+  // },
+
+  // {
+  //   path: '/pdf',
+  //   component: Layout,
+  //   redirect: '/pdf/index',
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'PDF',
+  //       meta: { title: 'PDF', icon: 'pdf' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/pdf/download',
+  //   component: () => import('@/views/main/main.vue'),
+  //   hidden: true
+  // },
+
+  // {
+  //   path: '/theme',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/main/main.vue'),
+  //       name: 'Theme',
+  //       meta: { title: 'Theme', icon: 'theme' }
+  //     }
+  //   ]
+  // },
 
   {
-    path: '/zip',
+    path: '/directive',
     component: Layout,
-    redirect: '/zip/download',
-    alwaysShow: true,
-    name: 'Zip',
-    meta: { title: 'Zip', icon: 'zip' },
-    children: [
-      {
-        path: 'download',
-        component: () => import('@/views/main/main.vue'),
-        name: 'ExportZip',
-        meta: { title: 'Export Zip' }
-      }
-    ]
-  },
-
-  {
-    path: '/pdf',
-    component: Layout,
-    redirect: '/pdf/index',
+    name: 'Directive',
     children: [
       {
         path: 'index',
-        component: () => import('@/views/main/main.vue'),
-        name: 'PDF',
-        meta: { title: 'PDF', icon: 'pdf' }
-      }
-    ]
-  },
-  {
-    path: '/pdf/download',
-    component: () => import('@/views/main/main.vue'),
-    hidden: true
-  },
-
-  {
-    path: '/theme',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/main/main.vue'),
-        name: 'Theme',
-        meta: { title: 'Theme', icon: 'theme' }
-      }
-    ]
-  },
-
-  {
-    path: '/clipboard',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/main/main.vue'),
-        name: 'ClipboardDemo',
-        meta: { title: 'Clipboard', icon: 'clipboard' }
+        component: () => import('@/views/directive/index.vue'),
+        name: 'DirectiveDemo',
+        meta: { title: '自定义指令', icon: 'edit' }
       }
     ]
   },
