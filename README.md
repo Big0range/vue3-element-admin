@@ -21,12 +21,6 @@ yarn commit
 git push
 ```
 
-## 目前存在的问题
-
-1.  有些多余的组件还未删除
-2.  左侧菜单展开收起时,会莫名的卡顿(vue DevTools 情况下)
-3.  功能还不是太多,但仍在继续更新写在最后
-4.  ts和vue3不是很熟悉,有些代码看起来不是很优雅
 
 ## 写在最后
-摸了半个月的鱼才勉勉强强做了个基础,喜欢的话点个[start](https://gitee.com/li_mei_chao/vue3-element-admin), 不喜欢的话悄悄划走就好了, 有问题评论区留言, 或者git 提issue, 同时欢迎各位大佬贡献代码
+摸了半个月的鱼才勉勉强强做了个基础,觉得还行就点个[start](https://gitee.com/li_mei_chao/vue3-element-admin)吧, 有问题可以评论区留言, 或者提issue

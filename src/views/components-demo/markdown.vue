@@ -1,8 +1,5 @@
 <template>
   <div>
-    <aside>
-      <div>不是很好用,找到好用的再替换</div>
-    </aside>
     <editor v-model="text" editorClass="editor" :pageFullScreen="false"></editor>
   </div>
 </template>
